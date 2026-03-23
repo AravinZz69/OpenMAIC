@@ -73,8 +73,8 @@ export function ProviderList({
         ))}
       </div>
 
-      {/* Add Provider Button */}
-      <div className="p-3 border-t">
+      {/* Add Provider Button - Hidden but kept for future use */}
+      <div className="p-3 border-t hidden">
         <Button variant="outline" size="sm" className="w-full gap-1.5" onClick={onAddProvider}>
           <Plus className="h-3.5 w-3.5" />
           {t('settings.addProviderButton')}
