@@ -494,8 +494,8 @@ function HomePage() {
       >
         {/* ── Logo ── */}
         <motion.img
-          src="/logo-horizontal.png"
-          alt="OpenMAIC"
+          src="/askjai_hero.png"
+          alt="AskJai"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{
@@ -504,7 +504,7 @@ function HomePage() {
             stiffness: 200,
             damping: 20,
           }}
-          className="h-12 md:h-16 mb-2 -ml-2 md:-ml-3"
+          className="h-32 md:h-48 mb-2 -ml-2 md:-ml-3"
         />
 
         {/* ── Slogan ── */}
@@ -513,6 +513,7 @@ function HomePage() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.25 }}
           className="text-sm text-muted-foreground/60 mb-8"
+          suppressHydrationWarning
         >
           {t('home.slogan')}
         </motion.p>
@@ -686,7 +687,7 @@ function HomePage() {
 
       {/* Footer — flows with content, at the very end */}
       <div className="mt-auto pt-12 pb-4 text-center text-xs text-muted-foreground/40">
-        OpenMAIC Open Source Project
+        AskJai Open Source Project
       </div>
     </div>
   );
@@ -802,7 +803,7 @@ function GreetingBar() {
             <Tooltip>
               <TooltipTrigger asChild>
                 <span className="leading-none select-none flex items-center gap-1">
-                  <span>
+                  <span suppressHydrationWarning>
                     <span className="text-xs text-muted-foreground/60 group-hover:text-muted-foreground transition-colors">
                       {t('home.greeting')}
                     </span>
@@ -899,6 +900,7 @@ function GreetingBar() {
                         startEditName();
                       }}
                       className="group/name inline-flex items-center gap-1 cursor-pointer"
+                      suppressHydrationWarning
                     >
                       <span className="text-[13px] font-semibold text-foreground/85 group-hover/name:text-foreground transition-colors">
                         {displayName}
