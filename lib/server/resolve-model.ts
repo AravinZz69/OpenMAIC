@@ -40,10 +40,17 @@ export function resolveModel(params: {
     }
   }
 
-  const apiKey = clientBaseUrl
-    ? params.apiKey || ''
-    : resolveApiKey(providerId, params.apiKey || '');
-  const baseUrl = clientBaseUrl ? clientBaseUrl : resolveBaseUrl(providerId, params.baseUrl);
+  // Always try to resolve API key from server config first, then fall back to client
+  // Only use client-provided key exclusively if client provides BOTH apiKey AND baseUrl
+  const serverApiKey = resolveApiKey(providerId, '');
+  const apiKey = (clientBaseUrl && params.apiKey)
+    ? params.apiKey
+    : (params.apiKey || serverApiKey || '');
+
+  // Resolve base URL: client > server > provider default
+  const serverBaseUrl = resolveBaseUrl(providerId, undefined);
+  const baseUrl = clientBaseUrl || serverBaseUrl;
+
   const proxy = resolveProxy(providerId);
   const { model, modelInfo } = getModel({
     providerId,

@@ -803,11 +803,11 @@ function GreetingBar() {
             <Tooltip>
               <TooltipTrigger asChild>
                 <span className="leading-none select-none flex items-center gap-1">
-                  <span suppressHydrationWarning>
-                    <span className="text-xs text-muted-foreground/60 group-hover:text-muted-foreground transition-colors">
+                  <span>
+                    <span className="text-xs text-muted-foreground/60 group-hover:text-muted-foreground transition-colors" suppressHydrationWarning>
                       {t('home.greeting')}
                     </span>
-                    <span className="text-[13px] font-semibold text-foreground/85 group-hover:text-foreground transition-colors">
+                    <span className="text-[13px] font-semibold text-foreground/85 group-hover:text-foreground transition-colors" suppressHydrationWarning>
                       {displayName}
                     </span>
                   </span>
@@ -900,9 +900,8 @@ function GreetingBar() {
                         startEditName();
                       }}
                       className="group/name inline-flex items-center gap-1 cursor-pointer"
-                      suppressHydrationWarning
                     >
-                      <span className="text-[13px] font-semibold text-foreground/85 group-hover/name:text-foreground transition-colors">
+                      <span className="text-[13px] font-semibold text-foreground/85 group-hover/name:text-foreground transition-colors" suppressHydrationWarning>
                         {displayName}
                       </span>
                       <Pencil className="size-2.5 text-muted-foreground/30 opacity-0 group-hover/name:opacity-100 transition-opacity" />

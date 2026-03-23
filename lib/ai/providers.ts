@@ -945,6 +945,52 @@ export const PROVIDERS: Record<ProviderId, ProviderConfig> = {
       },
     ],
   },
+
+  nvidia: {
+    id: 'nvidia',
+    name: 'NVIDIA NIM',
+    type: 'openai',
+    defaultBaseUrl: 'https://integrate.api.nvidia.com/v1',
+    requiresApiKey: true,
+    icon: '/logos/openai.svg', // Using OpenAI icon as fallback
+    models: [
+      {
+        id: 'meta/llama-3.3-70b-instruct',
+        name: 'Llama 3.3 70B (NVIDIA Free)',
+        contextWindow: 128000,
+        outputWindow: 4096,
+        capabilities: { streaming: true, tools: true, vision: false },
+      },
+      {
+        id: 'meta/llama-3.1-8b-instruct',
+        name: 'Llama 3.1 8B (NVIDIA Fast)',
+        contextWindow: 128000,
+        outputWindow: 4096,
+        capabilities: { streaming: true, tools: true, vision: false },
+      },
+      {
+        id: 'nvidia/llama-3.1-nemotron-70b-instruct',
+        name: 'Nemotron 70B (NVIDIA)',
+        contextWindow: 128000,
+        outputWindow: 4096,
+        capabilities: { streaming: true, tools: true, vision: false },
+      },
+      {
+        id: 'mistralai/mixtral-8x7b-instruct-v0.1',
+        name: 'Mixtral 8x7B (NVIDIA)',
+        contextWindow: 32768,
+        outputWindow: 4096,
+        capabilities: { streaming: true, tools: true, vision: false },
+      },
+      {
+        id: 'microsoft/phi-3-mini-128k-instruct',
+        name: 'Phi-3 Mini 128K (NVIDIA)',
+        contextWindow: 128000,
+        outputWindow: 4096,
+        capabilities: { streaming: true, tools: false, vision: false },
+      },
+    ],
+  },
 };
 
 /**
