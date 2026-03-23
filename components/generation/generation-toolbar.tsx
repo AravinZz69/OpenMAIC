@@ -134,6 +134,7 @@ export function GenerationToolbar({
                 pillCls,
                 'text-amber-600 dark:text-amber-400 animate-pulse',
                 'bg-amber-50 dark:bg-amber-950/30 hover:bg-amber-100 dark:hover:bg-amber-950/50',
+                'hidden', // Hidden but kept for future use
               )}
             >
               <Bot className="size-3.5" />
