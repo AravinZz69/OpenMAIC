@@ -115,38 +115,40 @@ export function GenerationToolbar({
 
   return (
     <div className="flex items-center gap-1 flex-wrap">
-      {/* ── Model selector ── */}
-      {configuredProviders.length > 0 ? (
-        <ModelSelectorPopover
-          configuredProviders={configuredProviders}
-          currentProviderId={currentProviderId}
-          currentModelId={currentModelId}
-          currentProviderConfig={currentProviderConfig}
-          setModel={setModel}
-          t={t}
-        />
-      ) : (
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <button
-              onClick={() => onSettingsOpen('providers')}
-              className={cn(
-                pillCls,
-                'text-amber-600 dark:text-amber-400 animate-pulse',
-                'bg-amber-50 dark:bg-amber-950/30 hover:bg-amber-100 dark:hover:bg-amber-950/50',
-                'hidden', // Hidden but kept for future use
-              )}
-            >
-              <Bot className="size-3.5" />
-              <span>{t('toolbar.configureProvider')}</span>
-            </button>
-          </TooltipTrigger>
-          <TooltipContent>{t('toolbar.configureProviderHint')}</TooltipContent>
-        </Tooltip>
-      )}
+      {/* ── Model selector - Hidden but kept for future use ── */}
+      <div className="hidden">
+        {configuredProviders.length > 0 ? (
+          <ModelSelectorPopover
+            configuredProviders={configuredProviders}
+            currentProviderId={currentProviderId}
+            currentModelId={currentModelId}
+            currentProviderConfig={currentProviderConfig}
+            setModel={setModel}
+            t={t}
+          />
+        ) : (
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <button
+                onClick={() => onSettingsOpen('providers')}
+                className={cn(
+                  pillCls,
+                  'text-amber-600 dark:text-amber-400 animate-pulse',
+                  'bg-amber-50 dark:bg-amber-950/30 hover:bg-amber-100 dark:hover:bg-amber-950/50',
+                  'hidden', // Hidden but kept for future use
+                )}
+              >
+                <Bot className="size-3.5" />
+                <span>{t('toolbar.configureProvider')}</span>
+              </button>
+            </TooltipTrigger>
+            <TooltipContent>{t('toolbar.configureProviderHint')}</TooltipContent>
+          </Tooltip>
+        )}
 
-      {/* ── Separator ── */}
-      <div className="w-px h-4 bg-border/60 mx-1" />
+        {/* ── Separator ── */}
+        <div className="w-px h-4 bg-border/60 mx-1" />
+      </div>
 
       {/* ── PDF (parser + upload) combined Popover ── */}
       <Popover>
