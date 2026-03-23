@@ -13,6 +13,11 @@ import { generateWithSeedream, testSeedreamConnectivity } from './adapters/seedr
 import { generateWithQwenImage, testQwenImageConnectivity } from './adapters/qwen-image-adapter';
 import { generateWithNanoBanana, testNanoBananaConnectivity } from './adapters/nano-banana-adapter';
 import { generateWithGrokImage, testGrokImageConnectivity } from './adapters/grok-image-adapter';
+import { generateWithNvidiaFlux, testNvidiaFluxConnectivity } from './adapters/nvidia-flux-adapter';
+import {
+  generateWithFluxKontextImage,
+  testFluxKontextImageConnectivity,
+} from './adapters/flux-kontext-image-adapter';
 
 export const IMAGE_PROVIDERS: Record<ImageProviderId, ImageProviderConfig> = {
   seedream: {
@@ -78,6 +83,24 @@ export const IMAGE_PROVIDERS: Record<ImageProviderId, ImageProviderConfig> = {
     ],
     supportedAspectRatios: ['16:9', '4:3', '1:1', '9:16'],
   },
+  'nvidia-flux': {
+    id: 'nvidia-flux',
+    name: 'NVIDIA FLUX',
+    requiresApiKey: true,
+    defaultBaseUrl: 'https://ai.api.nvidia.com/v1/genai',
+    models: [
+      { id: 'black-forest-labs/flux.1-kontext-dev', name: 'FLUX 1 Kontext Dev' },
+    ],
+    supportedAspectRatios: ['16:9', '4:3', '1:1', '9:16'],
+  },
+  'flux-kontext-image': {
+    id: 'flux-kontext-image',
+    name: 'Flux Kontext Image',
+    requiresApiKey: true,
+    defaultBaseUrl: 'https://ai.api.nvidia.com/v1/genai/black-forest-labs/flux.1-kontext-dev',
+    models: [{ id: 'flux-1-kontext-dev', name: 'Flux 1 Kontext Dev' }],
+    supportedAspectRatios: ['16:9', '1:1', '9:16', 'match_input_image'],
+  },
 };
 
 export async function testImageConnectivity(
@@ -92,6 +115,10 @@ export async function testImageConnectivity(
       return testNanoBananaConnectivity(config);
     case 'grok-image':
       return testGrokImageConnectivity(config);
+    case 'nvidia-flux':
+      return testNvidiaFluxConnectivity(config);
+    case 'flux-kontext-image':
+      return testFluxKontextImageConnectivity(config);
     default:
       return {
         success: false,
@@ -113,6 +140,10 @@ export async function generateImage(
       return generateWithNanoBanana(config, options);
     case 'grok-image':
       return generateWithGrokImage(config, options);
+    case 'nvidia-flux':
+      return generateWithNvidiaFlux(config, options);
+    case 'flux-kontext-image':
+      return generateWithFluxKontextImage(config, options);
     default:
       throw new Error(`Unsupported image provider: ${config.providerId}`);
   }

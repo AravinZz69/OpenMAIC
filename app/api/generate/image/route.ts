@@ -7,7 +7,7 @@
  * POST /api/generate/image
  *
  * Headers:
- *   x-image-provider: ImageProviderId (default: 'seedream')
+ *   x-image-provider: ImageProviderId (default: 'nvidia-flux')
  *   x-api-key: string (optional, server fallback)
  *   x-base-url: string (optional, server fallback)
  *
@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
       return apiError('MISSING_REQUIRED_FIELD', 400, 'Missing prompt');
     }
 
-    const providerId = (request.headers.get('x-image-provider') || 'seedream') as ImageProviderId;
+    const providerId = (request.headers.get('x-image-provider') || 'nvidia-flux') as ImageProviderId;
     const clientApiKey = request.headers.get('x-api-key') || undefined;
     const clientBaseUrl = request.headers.get('x-base-url') || undefined;
     const clientModel = request.headers.get('x-image-model') || undefined;

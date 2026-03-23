@@ -69,7 +69,7 @@
  * Add new image providers here as union members.
  * Keep in sync with IMAGE_PROVIDERS registry in constants.ts
  */
-export type ImageProviderId = 'seedream' | 'qwen-image' | 'nano-banana' | 'grok-image';
+export type ImageProviderId = 'seedream' | 'qwen-image' | 'nano-banana' | 'grok-image' | 'nvidia-flux' | 'flux-kontext-image';
 // Add new image providers below (uncomment and modify):
 // | 'dall-e'
 // | 'midjourney'
@@ -103,7 +103,7 @@ export interface ImageProviderConfig {
   /** Available models for this provider */
   models: ImageModelInfo[];
   /** Aspect ratios supported by this provider */
-  supportedAspectRatios: Array<'16:9' | '4:3' | '1:1' | '9:16'>;
+  supportedAspectRatios: Array<'16:9' | '4:3' | '1:1' | '9:16' | 'match_input_image'>;
   /** Optional artistic styles supported by this provider */
   supportedStyles?: string[];
   /** Maximum supported output resolution */
@@ -146,9 +146,11 @@ export interface ImageGenerationOptions {
   /** Desired output height in pixels */
   height?: number;
   /** Desired aspect ratio (provider will calculate dimensions if width/height not set) */
-  aspectRatio?: '16:9' | '4:3' | '1:1' | '9:16';
+  aspectRatio?: '16:9' | '4:3' | '1:1' | '9:16' | 'match_input_image';
   /** Optional artistic style (must be supported by the chosen provider) */
   style?: string;
+  /** Optional input image for context-aware generation (base64 encoded) */
+  image?: string;
 }
 
 /**
@@ -178,7 +180,7 @@ export interface ImageGenerationResult {
  * Add new video providers here as union members.
  * Keep in sync with VIDEO_PROVIDERS registry in constants.ts
  */
-export type VideoProviderId = 'seedance' | 'kling' | 'veo' | 'sora' | 'grok-video';
+export type VideoProviderId = 'seedance' | 'kling' | 'veo' | 'sora' | 'grok-video' | 'flux-kontext';
 // Add new video providers below (uncomment and modify):
 // | 'runway'
 // | 'pika'
@@ -206,7 +208,7 @@ export interface VideoProviderConfig {
   /** Available models for this provider */
   models: VideoModelInfo[];
   /** Aspect ratios supported by this provider */
-  supportedAspectRatios: Array<'16:9' | '4:3' | '1:1' | '9:16' | '3:4' | '21:9'>;
+  supportedAspectRatios: Array<'16:9' | '4:3' | '1:1' | '9:16' | '3:4' | '21:9' | 'match_input_image'>;
   /** Supported video durations in seconds */
   supportedDurations?: number[];
   /** Supported output resolutions */
@@ -244,9 +246,11 @@ export interface VideoGenerationOptions {
   /** Desired video duration in seconds */
   duration?: number;
   /** Desired aspect ratio */
-  aspectRatio?: '16:9' | '4:3' | '1:1' | '9:16' | '3:4' | '21:9';
+  aspectRatio?: '16:9' | '4:3' | '1:1' | '9:16' | '3:4' | '21:9' | 'match_input_image';
   /** Desired output resolution */
   resolution?: '480p' | '720p' | '1080p';
+  /** Optional input image for context-aware generation (base64 encoded) */
+  image?: string;
 }
 
 /**

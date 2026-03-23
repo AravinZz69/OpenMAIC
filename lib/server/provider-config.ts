@@ -50,6 +50,7 @@ const LLM_ENV_MAP: Record<string, string> = {
   DOUBAO: 'doubao',
   GROK: 'grok',
   NVIDIA: 'nvidia',
+  MOONSHOT: 'moonshot',
 };
 
 const TTS_ENV_MAP: Record<string, string> = {
@@ -71,10 +72,12 @@ const PDF_ENV_MAP: Record<string, string> = {
 };
 
 const IMAGE_ENV_MAP: Record<string, string> = {
+  NVIDIA: 'nvidia-flux',
   IMAGE_SEEDREAM: 'seedream',
   IMAGE_QWEN_IMAGE: 'qwen-image',
   IMAGE_NANO_BANANA: 'nano-banana',
   IMAGE_GROK: 'grok-image',
+  FLUX_KONTEXT_IMAGE: 'flux-kontext-image',
 };
 
 const VIDEO_ENV_MAP: Record<string, string> = {
@@ -83,6 +86,7 @@ const VIDEO_ENV_MAP: Record<string, string> = {
   VIDEO_VEO: 'veo',
   VIDEO_SORA: 'sora',
   VIDEO_GROK: 'grok-video',
+  FLUX_KONTEXT: 'flux-kontext',
 };
 
 const WEB_SEARCH_ENV_MAP: Record<string, string> = {

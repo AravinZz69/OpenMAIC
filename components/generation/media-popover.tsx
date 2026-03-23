@@ -48,6 +48,8 @@ const IMAGE_PROVIDER_ICONS: Record<string, string> = {
   'qwen-image': '/logos/bailian.svg',
   'nano-banana': '/logos/gemini.svg',
   'grok-image': '/logos/grok.svg',
+  'nvidia-flux': '/logos/nvidia.svg',
+  'flux-kontext-image': '/logos/nvidia.svg',
 };
 const VIDEO_PROVIDER_ICONS: Record<string, string> = {
   seedance: '/logos/doubao.svg',
@@ -55,6 +57,7 @@ const VIDEO_PROVIDER_ICONS: Record<string, string> = {
   veo: '/logos/gemini.svg',
   sora: '/logos/openai.svg',
   'grok-video': '/logos/grok.svg',
+  'flux-kontext': '/logos/nvidia.svg',
 };
 
 type TabId = 'image' | 'video' | 'tts' | 'asr';

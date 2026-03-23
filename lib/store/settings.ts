@@ -287,13 +287,15 @@ const getDefaultPDFConfig = () => ({
 
 // Initialize default Image config
 const getDefaultImageConfig = () => ({
-  imageProviderId: 'seedream' as ImageProviderId,
-  imageModelId: 'doubao-seedream-5-0-260128',
+  imageProviderId: 'nvidia-flux' as ImageProviderId,
+  imageModelId: 'black-forest-labs/flux.1-kontext-dev',
   imageProvidersConfig: {
+    'nvidia-flux': { apiKey: '', baseUrl: '', enabled: true },
     seedream: { apiKey: '', baseUrl: '', enabled: false },
     'qwen-image': { apiKey: '', baseUrl: '', enabled: false },
     'nano-banana': { apiKey: '', baseUrl: '', enabled: false },
     'grok-image': { apiKey: '', baseUrl: '', enabled: false },
+    'flux-kontext-image': { apiKey: '', baseUrl: '', enabled: false },
   } as Record<ImageProviderId, { apiKey: string; baseUrl: string; enabled: boolean }>,
 });
 
@@ -307,6 +309,7 @@ const getDefaultVideoConfig = () => ({
     veo: { apiKey: '', baseUrl: '', enabled: false },
     sora: { apiKey: '', baseUrl: '', enabled: false },
     'grok-video': { apiKey: '', baseUrl: '', enabled: false },
+    'flux-kontext': { apiKey: '', baseUrl: '', enabled: false },
   } as Record<VideoProviderId, { apiKey: string; baseUrl: string; enabled: boolean }>,
 });
 
@@ -1076,6 +1079,13 @@ export const useSettingsStore = create<SettingsState>()(
         if (!state.videoProvidersConfig) {
           const defaultVideoConfig = getDefaultVideoConfig();
           Object.assign(state, defaultVideoConfig);
+        }
+
+        // Migrate seedream users to nvidia-flux if seedream has no API key
+        if (state.imageProviderId === 'seedream' &&
+            state.imageProvidersConfig?.seedream?.apiKey === '') {
+          state.imageProviderId = 'nvidia-flux';
+          state.imageModelId = 'black-forest-labs/flux.1-kontext-dev';
         }
 
         // v1 → v2: Replace deep research with web search
