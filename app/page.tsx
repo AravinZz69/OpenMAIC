@@ -685,8 +685,8 @@ function HomePage() {
         </motion.div>
       )}
 
-      {/* Footer — flows with content, at the very end */}
-      <div className="mt-auto pt-12 pb-4 text-center text-xs text-muted-foreground/40">
+      {/* Footer — Hidden but kept for future use */}
+      <div className="mt-auto pt-12 pb-4 text-center text-xs text-muted-foreground/40 hidden">
         AskJai Open Source Project
       </div>
     </div>
